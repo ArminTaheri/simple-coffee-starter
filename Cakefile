@@ -27,7 +27,7 @@ coffee =
   outFile: 'main'
 
 joinedFiles = ("#{coffee.srcDir}/#{file}.coffee" for file in coffee.inFiles).join ' '
-jsOutput = "#{coffee.outDir}/#{coffee.outFile}"
+jsOutput = "#{coffee.outDir}"
 
 sass =
   srcDir: 'src/sass'
@@ -60,7 +60,7 @@ exerr = (err, sout, serr) ->
 # ------------------------------------------------------
 # -- Compile & Watch functions -------------------------
 compileCoffee = () ->
-  exec "coffee #{joinedFiles} -c #{jsOutput}.js", exerr
+  exec "coffee -o #{jsOutput} -c #{joinedFiles}", exerr
   process.stdout.write "[#{blue}#{gettime()}#{reset}] " + green + "compiled" + reset + " #{joinedFiles}\n"
 
 compileSass = () ->
